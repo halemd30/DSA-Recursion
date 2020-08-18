@@ -77,9 +77,46 @@ let factorial = (n) => {
 console.log(factorial(4));
 
 // 8. Find a way out of the maze
+let mySmallMaze = [
+  [" ", " ", " "],
+  [" ", "*", " "],
+  [" ", " ", "e"],
+];
+
+let myMaze = [
+  [" ", " ", " ", "*", " ", " ", " "],
+  ["*", "*", " ", "*", " ", "*", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", "*", "*", "*", "*", "*", " "],
+  [" ", " ", " ", " ", " ", " ", "e"],
+];
+
 let getOut = (maze) => {
-  let path = (col, row) => {};
+  let path = (col, row) => {
+    if (maze[col][row] === "e") {
+      console.log("I'm out!!!");
+    } else if (maze[col][row] === " ") {
+      console.log("keep going!");
+      maze[col][row] = 4;
+
+      // check boundaries
+      if (col < maze.length - 1) {
+        path(col + 1, row);
+      }
+      if (row < maze[col].length - 1) {
+        path(col, row + 1);
+      }
+      if (col > 0) {
+        path(col - 1, row);
+      }
+      if (row > 0) {
+        path(col, row - 1);
+      }
+    }
+  };
+  return path(0, 1);
 };
+getOut(myMaze);
 
 // 9. Find ALL the ways out of the maze
 
@@ -88,3 +125,5 @@ let getOut = (maze) => {
 // 11. Organization chart
 
 // 12. Binary representation
+
+// 13. Honia function
